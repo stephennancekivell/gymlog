@@ -8,7 +8,7 @@ config(function($routeProvider) {
 	$routeProvider.
 	when('/list', {controller:ListCtrl, templateUrl:'partials/list.html'}).
 	when('/new', {controller:NewCtrl, templateUrl:'partials/new.html'}).
-	when('/edit', {controller:EditCtrl, templateUrl:'partials/new.html'}).
+	when('/edit/:workoutId', {controller:EditCtrl, templateUrl:'partials/new.html'}).
 	when('/welcome', {controller:WelcomeCtrl, templateUrl:'partials/welcome.html'}).
 	otherwise({redirectTo:'/welcome'});
 });
@@ -17,12 +17,10 @@ function ListCtrl($scope, LogResource) {
 	$scope.workouts = LogResource.query();
 }
 
-function EditCtrl($scope, $location, LogResource){
-	var self = this; //what does this do.
-
-	LogResource.query(function(data){
-		$scope.workout = new LogResource(data[0]);
-	});
+function EditCtrl($scope, $location, $routeParams, LogResource){
+	LogResource.get({id:$routeParams.workoutId}, function(data){
+		$scope.workout = new LogResource(data);
+	})
 
 	$scope.save = function(){
 		$scope.workout.update(function(){
@@ -32,10 +30,9 @@ function EditCtrl($scope, $location, LogResource){
 }
 
 function NewCtrl($scope, $location, LogResource) {
-	var workout = {user:App.user.username};
-	$scope.workout = workout;
+	$scope.workout = new LogResource({user:App.user.username});
 	$scope.save = function() {
-		LogResource.save(workout, function(){
+		$scope.workout.$save(function(){
 			$location.path("/list");
 		});
 	}

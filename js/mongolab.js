@@ -5,6 +5,7 @@ factory('LogResource', function($resource) {
     { apiKey: '5039893ee4b0d1e499082d1c'},
     {
       update: { method: 'PUT' },
+      //query: {method: 'GET'}
       //query: {method: 'GET', params:{user: 'paul'}, isArray:true}
      }
     );

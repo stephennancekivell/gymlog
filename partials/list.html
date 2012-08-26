@@ -1,7 +1,7 @@
 <h3>list</h3>
 <ul>
 	<li ng-repeat="workout in workouts">
-		<a href="#">
+		<a href="#/edit/{{workout._id.$oid}}">
 			{{workout.title}} {{workout.reps}} {{workout.sets}} {{workout.weight}}
 		</a>
 	</li>

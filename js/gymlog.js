@@ -15,7 +15,7 @@ config(function($routeProvider) {
 });
 
 function ListCtrl($scope, WorkoutResource) {
-	$scope.workouts = WorkoutResource.find({q:'{"user":"'+App.user.username+'"}'});
+	$scope.workouts = WorkoutResource.find({q:'{"user":"'+App.user.username+'","deleted":false}'});
 }
 
 function EditCtrl($scope, $location, $routeParams, WorkoutResource){
@@ -32,11 +32,19 @@ function EditCtrl($scope, $location, $routeParams, WorkoutResource){
 
 function NewCtrl($scope, $location, WorkoutResource) {
 	$scope.workout = new WorkoutResource({user:App.user.username});
+	$scope.workout.deleted = false;
 	$scope.save = function() {
+		$scope.workout.date = new Date();
 		$scope.workout.$save(function(){
 			$location.path("/list");
 		});
 	}
+	$scope.delete = function() {
+		$scope.workout.deleted = true;
+		$scope.workout.$save(function(){
+			$location.path("/list");
+		});
+	};
 }
 
 function WelcomeCtrl($scope, $location) {

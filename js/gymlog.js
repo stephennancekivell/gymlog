@@ -15,10 +15,7 @@ config(function($routeProvider) {
 });
 
 function ListCtrl($scope, WorkoutResource) {
-	WorkoutResource.find({q:'{"user":"paul"}'},function(data) {
-		console.log('found'+data);
-	});
-	$scope.workouts = WorkoutResource.query();
+	$scope.workouts = WorkoutResource.find({q:'{"user":"'+App.user.username+'"}'});
 }
 
 function EditCtrl($scope, $location, $routeParams, WorkoutResource){

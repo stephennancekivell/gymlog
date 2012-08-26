@@ -31,8 +31,10 @@ function EditCtrl($scope, $location, $routeParams, WorkoutResource){
 }
 
 function NewCtrl($scope, $location, WorkoutResource) {
-	$scope.workout = new WorkoutResource({user:App.user.username});
-	$scope.workout.deleted = false;
+	$scope.workout = new WorkoutResource({
+		user:App.user.username,
+		deleted:false
+	});
 	$scope.save = function() {
 		$scope.workout.date = new Date();
 		$scope.workout.$save(function(){

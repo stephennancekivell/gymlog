@@ -19,15 +19,19 @@ function ListCtrl($scope, WorkoutResource) {
 }
 
 function EditCtrl($scope, $location, $routeParams, WorkoutResource){
-	WorkoutResource.get({id:$routeParams.workoutId}, function(data){
-		$scope.workout = new WorkoutResource(data);
-	})
+	$scope.workout = WorkoutResource.get({id:$routeParams.workoutId});
 
 	$scope.save = function(){
 		$scope.workout.update(function(){
 			$location.path("/list");
 		});
 	}
+	$scope.delete = function() {
+		$scope.workout.deleted = true;
+		$scope.workout.$save(function(){
+			$location.path("/list");
+		});
+	};
 }
 
 function NewCtrl($scope, $location, WorkoutResource) {
@@ -41,12 +45,6 @@ function NewCtrl($scope, $location, WorkoutResource) {
 			$location.path("/list");
 		});
 	}
-	$scope.delete = function() {
-		$scope.workout.deleted = true;
-		$scope.workout.$save(function(){
-			$location.path("/list");
-		});
-	};
 }
 
 function WelcomeCtrl($scope, $location) {

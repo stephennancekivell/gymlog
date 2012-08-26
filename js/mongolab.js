@@ -5,7 +5,7 @@ factory('WorkoutResource', function($resource) {
     { apiKey: '5039893ee4b0d1e499082d1c'},
     {
       update: { method: 'PUT' },
-      //query: {method: 'GET'}
+      find: {method: 'GET', isArray:true}
       //query: {method: 'GET', params:{user: 'paul'}, isArray:true}
      }
     );
@@ -13,6 +13,11 @@ factory('WorkoutResource', function($resource) {
   WorkoutResource.prototype.update = function(cb) {
     return WorkoutResource.update({id: this._id.$oid},
       angular.extend({}, this, {_id:undefined}), cb);
+  };
+
+  WorkoutResource.prototype.find = function (cb) {
+    console.log('about to find');
+    return WorkoutResource.find({id:'lol'},cb);
   };
 
   return WorkoutResource;

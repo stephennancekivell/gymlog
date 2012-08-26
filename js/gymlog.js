@@ -1,5 +1,6 @@
 var App = {
 	user: {
+		username: "paul"
 	}
 };
 
@@ -14,6 +15,9 @@ config(function($routeProvider) {
 });
 
 function ListCtrl($scope, WorkoutResource) {
+	WorkoutResource.find({q:'{"user":"paul"}'},function(data) {
+		console.log('found'+data);
+	});
 	$scope.workouts = WorkoutResource.query();
 }
 
@@ -40,6 +44,9 @@ function NewCtrl($scope, $location, WorkoutResource) {
 
 function WelcomeCtrl($scope, $location) {
 	$scope.user = App.user;
+	if (typeof(App.user.username) != "undefined") {
+		$location.path("/list");
+	}
 	$scope.submit = function() {
 		$location.path("/list");
 	}

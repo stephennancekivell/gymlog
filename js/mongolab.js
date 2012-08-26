@@ -1,15 +1,18 @@
 angular.module('mongolab', ['ngResource']).
-factory('Log', function($resource) {
-  var Log = $resource('https://api.mongolab.com/api/1/databases' +
+factory('LogResource', function($resource) {
+  var LogResource = $resource('https://api.mongolab.com/api/1/databases' +
     '/gymlog/collections/logs/:id',
-    { apiKey: '5039893ee4b0d1e499082d1c' },
-    { update: { method: 'PUT' } }
+    { apiKey: '5039893ee4b0d1e499082d1c'},
+    {
+      update: { method: 'PUT' },
+      //query: {method: 'GET', params:{user: 'paul'}, isArray:true}
+     }
     );
 
-  Log.prototype.update = function(cb) {
-    return Project.update({id: this._id.$oid},
+  LogResource.prototype.update = function(cb) {
+    return LogResource.update({id: this._id.$oid},
       angular.extend({}, this, {_id:undefined}), cb);
   };
 
-  return Log;
+  return LogResource;
 });

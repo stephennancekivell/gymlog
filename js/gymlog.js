@@ -6,23 +6,37 @@ var App = {
 angular.module('gymlog', ['mongolab']).
 config(function($routeProvider) {
 	$routeProvider.
-	when('/list', {controller:ListControl, templateUrl:'partials/list.html'}).
-	when('/new', {controller:NewControl, templateUrl:'partials/new.html'}).
+	when('/list', {controller:ListCtrl, templateUrl:'partials/list.html'}).
+	when('/new', {controller:NewCtrl, templateUrl:'partials/new.html'}).
+	when('/edit', {controller:EditCtrl, templateUrl:'partials/new.html'}).
 	when('/welcome', {controller:WelcomeCtrl, templateUrl:'partials/welcome.html'}).
 	otherwise({redirectTo:'/welcome'});
 });
 
-function ListControl($scope, Log) {
-	$scope.workouts = Log.query();
+function ListCtrl($scope, LogResource) {
+	$scope.workouts = LogResource.query();
 }
 
-function NewControl($scope, $location, Log) {
-	var workout = {};
-	allWorkouts.push(workout);
+function EditCtrl($scope, $location, LogResource){
+	var self = this; //what does this do.
+
+	LogResource.query(function(data){
+		$scope.workout = new LogResource(data[0]);
+	});
+
+	$scope.save = function(){
+		$scope.workout.update(function(){
+			$location.path("/list");
+		});
+	}
+}
+
+function NewCtrl($scope, $location, LogResource) {
+	var workout = {user:App.user.username};
 	$scope.workout = workout;
 	$scope.save = function() {
-		Log.save(workout, function(){
-			$location.path("/");
+		LogResource.save(workout, function(){
+			$location.path("/list");
 		});
 	}
 }

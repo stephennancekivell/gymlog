@@ -1,5 +1,8 @@
 <div>
-	<h3>Who are you</h3>
-	<input type="text" ng-model="user.username"/>
-	<button ng-click="submit()"></button>
+	<h1>Welcome</h1>
+	<h3>Who are you?</h3>
+	<form ng-submit="submit()">
+		<input type="text" ng-model="user.username"/>
+		<input type="submit" value="Continue" />
+	</form>
 </div>

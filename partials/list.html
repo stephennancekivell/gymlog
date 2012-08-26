@@ -3,7 +3,9 @@
 	<ul>
 		<li ng-repeat="workout in workouts">
 			<a href="#/edit/{{workout._id.$oid}}">
-				{{workout.title}} {{workout.reps}} {{workout.sets}} {{workout.weight}} {{Date.parse(workout.date).toString("yy/M/d")}}
+				<span class="label">{{workout.title}}</span>
+				<span class="amount"> {{workout.reps}} {{workout.sets}} {{workout.weight}}</span>
+				<span class="date">{{workout.dateString(workout)}}</span>
 			</a>
 		</li>
 	</ul>

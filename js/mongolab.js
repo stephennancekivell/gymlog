@@ -15,5 +15,9 @@ factory('WorkoutResource', function($resource) {
       angular.extend({}, this, {_id:undefined}), cb);
   };
 
+  WorkoutResource.prototype.dateString = function(workout) {
+    return new Date(workout.date).toString("yyyy/M/d");
+  }
+
   return WorkoutResource;
 });

@@ -1,6 +1,6 @@
 angular.module('mongolab', ['ngResource']).
-factory('LogResource', function($resource) {
-  var LogResource = $resource('https://api.mongolab.com/api/1/databases' +
+factory('WorkoutResource', function($resource) {
+  var WorkoutResource = $resource('https://api.mongolab.com/api/1/databases' +
     '/gymlog/collections/logs/:id',
     { apiKey: '5039893ee4b0d1e499082d1c'},
     {
@@ -10,10 +10,10 @@ factory('LogResource', function($resource) {
      }
     );
 
-  LogResource.prototype.update = function(cb) {
-    return LogResource.update({id: this._id.$oid},
+  WorkoutResource.prototype.update = function(cb) {
+    return WorkoutResource.update({id: this._id.$oid},
       angular.extend({}, this, {_id:undefined}), cb);
   };
 
-  return LogResource;
+  return WorkoutResource;
 });

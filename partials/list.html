@@ -1,8 +1,8 @@
 <div class="listPartial">
 	<table>
 		<tr ng-repeat="workout in workouts" onclick="window.location='#/edit/{{workout._id.$oid}}'">
-			<td>{{workout.title}}</td>
-			<td>{{workout.reps}} {{workout.sets}} {{workout.weigth}}</td>
+			<td>{{workout.label}}</td>
+			<td>{{workout.note}}</td>
 			<td>{{workout.dateString(workout)}}</td>
 		</tr>
 	</table>

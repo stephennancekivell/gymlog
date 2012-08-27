@@ -1,17 +1,17 @@
 var App = {
 	user: {
-		// username: "paul"
+		username: "paul"
 	}
 };
 
 angular.module('gymlog', ['mongolab']).
 config(function($routeProvider) {
 	$routeProvider.
-	when('/list', {controller:ListCtrl, templateUrl:'partials/list.html'}).
-	when('/new', {controller:NewCtrl, templateUrl:'partials/new.html'}).
-	when('/edit/:workoutId', {controller:EditCtrl, templateUrl:'partials/new.html'}).
-	when('/welcome', {controller:WelcomeCtrl, templateUrl:'partials/welcome.html'}).
-	otherwise({redirectTo:'/welcome'});
+		when('/list', {controller:ListCtrl, templateUrl:'partials/list.html'}).
+		when('/new', {controller:NewCtrl, templateUrl:'partials/new.html'}).
+		when('/edit/:workoutId', {controller:EditCtrl, templateUrl:'partials/new.html'}).
+		when('/welcome', {controller:WelcomeCtrl, templateUrl:'partials/welcome.html'}).
+		otherwise({redirectTo:'/welcome'});
 });
 
 function ListCtrl($scope, WorkoutResource) {

@@ -1,12 +1,10 @@
 <div class="listPartial">
 	<a class="add" href="#/new">+</a>
-	<ul>
-		<li ng-repeat="workout in workouts">
-			<a href="#/edit/{{workout._id.$oid}}">
-				<span class="label">{{workout.title}}</span>
-				<span class="amount"> {{workout.reps}} {{workout.sets}} {{workout.weight}}</span>
-				<span class="date">{{workout.dateString(workout)}}</span>
-			</a>
-		</li>
-	</ul>
+	<table>
+		<tr ng-repeat="workout in workouts" onclick="window.location='#/edit/{{workout._id.$oid}}'">
+			<td>{{workout.title}}</td>
+			<td>{{workout.reps}} {{workout.sets}} {{workout.weigth}}</td>
+			<td>{{workout.dateString(workout)}}</td>
+		</tr>
+	</table>
 </div>

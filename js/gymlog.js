@@ -1,6 +1,6 @@
 var App = {
 	user: {
-		username: "paul"
+		// username: "paul"
 	}
 };
 

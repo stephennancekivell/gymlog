@@ -12,7 +12,8 @@ factory('WorkoutResource', function($resource) {
 
   WorkoutResource.prototype.update = function(cb) {
     return WorkoutResource.update({id: this._id.$oid},
-      angular.extend({}, this, {_id:undefined}), cb);
+      angular.extend({}, this, {_id:undefined}),
+      cb);
   };
 
   WorkoutResource.prototype.dateString = function(workout) {

@@ -29,7 +29,7 @@ function EditCtrl($scope, $location, $routeParams, WorkoutResource){
 	}
 	$scope.delete = function() {
 		$scope.workout.deleted = true;
-		$scope.workout.$save(function(){
+		$scope.workout.update(function(){
 			$location.path("/list");
 		});
 	};

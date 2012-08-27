@@ -3,7 +3,7 @@
 		<tr ng-repeat="workout in workouts" onclick="window.location='#/edit/{{workout._id.$oid}}'">
 			<td>{{workout.label}}</td>
 			<td>{{workout.note}}</td>
-			<td>{{workout.dateString(workout)}}</td>
+			<td>{{dateString(workout)}}</td>
 		</tr>
 	</table>
 </div>

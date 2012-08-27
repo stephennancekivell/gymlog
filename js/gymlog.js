@@ -18,10 +18,19 @@ function ListCtrl($scope, $location, WorkoutResource) {
 	checkLoggedIn($location);
 	$scope.workouts = WorkoutResource.find({q:'{"user":"'+App.user.username+'","deleted":false}'});
 	$(".addEntry").css('display','inline-block');
+
+	$scope.dateString = function(workout) {
+    return new Date(workout.date).toString("yyyy/M/d");
+  }
+}
+
+function logDateString(workout){
+	return new Date(workout.date).toString("yyyy/M/d HH:mm");
 }
 
 function EditCtrl($scope, $location, $routeParams, WorkoutResource){
 	$scope.workout = WorkoutResource.get({id:$routeParams.workoutId});
+	$scope.dateString = logDateString;
 
 	$scope.save = function(){
 		$scope.workout.update(function(){
@@ -38,6 +47,7 @@ function EditCtrl($scope, $location, $routeParams, WorkoutResource){
 
 function NewCtrl($scope, $location, WorkoutResource) {
 	checkLoggedIn($location);
+	$scope.dateString = logDateString;
 	$scope.workout = new WorkoutResource({
 		user:App.user.username,
 		deleted:false

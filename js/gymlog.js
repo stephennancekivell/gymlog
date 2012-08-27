@@ -14,7 +14,8 @@ config(function($routeProvider) {
 		otherwise({redirectTo:'/welcome'});
 });
 
-function ListCtrl($scope, WorkoutResource) {
+function ListCtrl($scope, $location, WorkoutResource) {
+	checkLoggedIn($location);
 	$scope.workouts = WorkoutResource.find({q:'{"user":"'+App.user.username+'","deleted":false}'});
 	$(".addEntry").css('display','inline-block');
 }
@@ -36,6 +37,7 @@ function EditCtrl($scope, $location, $routeParams, WorkoutResource){
 }
 
 function NewCtrl($scope, $location, WorkoutResource) {
+	checkLoggedIn($location);
 	$scope.workout = new WorkoutResource({
 		user:App.user.username,
 		deleted:false
@@ -50,10 +52,13 @@ function NewCtrl($scope, $location, WorkoutResource) {
 
 function WelcomeCtrl($scope, $location) {
 	$scope.user = App.user;
-	if (typeof(App.user.username) != "undefined") {
-		$location.path("/list");
-	}
 	$scope.submit = function() {
 		$location.path("/list");
+	}
+}
+
+function checkLoggedIn($location){
+	if (typeof(App.user.username) == "undefined") {
+		$location.path("/welcome");
 	}
 }

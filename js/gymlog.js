@@ -16,6 +16,7 @@ config(function($routeProvider) {
 
 function ListCtrl($scope, WorkoutResource) {
 	$scope.workouts = WorkoutResource.find({q:'{"user":"'+App.user.username+'","deleted":false}'});
+	$(".addEntry").css('display','inline-block');
 }
 
 function EditCtrl($scope, $location, $routeParams, WorkoutResource){

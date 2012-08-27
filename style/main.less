@@ -26,12 +26,21 @@ body {
 			margin-top:0px;
 			margin-bottom:0px;
 			padding: 10px 20px 10px;
-			
-			a {
-				color:#999;
-				&:hover{
-					color:white;
+			overflow:auto;
+
+			li{
+				display:inline-block;
+				a {
+					color:#999;
+					&:hover{
+						color:white;
+					}
 				}
+			}
+
+			.addEntry{
+				display:none;
+				float:right;
 			}
 		}
 	}
@@ -41,23 +50,19 @@ body {
 	}
 
 	.listPartial{
-		.add {
-			color: white;
-			background-color:blue;
-			padding: 10px 20px 10px;
-			width:30px;
-			float:right;
-		}
 		table {
 			margin-top:0.4em;
-			float:left;
-			width:80%;
+			width:100%;
 			border-collapse:collapse;
 
 			tr{
 				border-bottom-style:solid;
 				border-bottom-width:1px;
 				padding: 0.2em;
+
+				&:hover{
+					cursor:pointer;
+				}
 			}
 		}
 	}

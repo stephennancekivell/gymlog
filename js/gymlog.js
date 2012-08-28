@@ -4,14 +4,14 @@ var App = {
 	}
 };
 
-angular.module('gymlog', ['mongolab']).
+angular.module('gymlog', ['mongolab','ngCookies']).
 config(function($routeProvider) {
 	$routeProvider.
 		when('/list', {controller:ListCtrl, templateUrl:'partials/list.html'}).
 		when('/new', {controller:NewCtrl, templateUrl:'partials/edit.html'}).
 		when('/edit/:workoutId', {controller:EditCtrl, templateUrl:'partials/edit.html'}).
-		when('/welcome', {controller:WelcomeCtrl, templateUrl:'partials/welcome.html'}).
-		otherwise({redirectTo:'/welcome'});
+		when('/', {controller:WelcomeCtrl, templateUrl:'partials/welcome.html'}).
+		otherwise({redirectTo:'/'});
 });
 
 function ListCtrl($scope, $location, WorkoutResource) {
@@ -64,8 +64,15 @@ function NewCtrl($scope, $location, WorkoutResource) {
 	}
 }
 
-function WelcomeCtrl($scope, $location) {
+function WelcomeCtrl($scope, $location, $cookieStore) {
+	App.user = $cookieStore.get("user");
 	$scope.user = App.user;
+
+	$scope.$watch('user.username', function() {
+		$cookieStore.put("user", $scope.user);
+		console.log("put");
+	});
+
 	$scope.submit = function() {
 		$location.path("/list");
 	}
@@ -73,6 +80,6 @@ function WelcomeCtrl($scope, $location) {
 
 function checkLoggedIn($location){
 	if (typeof(App.user.username) == "undefined") {
-		$location.path("/welcome");
+		$location.path("/");
 	}
 }

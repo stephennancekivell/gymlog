@@ -4,7 +4,6 @@ function WelcomeCtrl($scope, $location, $cookieStore) {
 
 	$scope.$watch('user.username', function() {
 		$cookieStore.put("user", $scope.user);
-		console.log("put");
 	});
 
 	$scope.submit = function() {

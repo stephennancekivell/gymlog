@@ -12,17 +12,19 @@ App.user = {
 	//username: "paul"
 }
 
+App.checkLoggedIn = function($location) {
+	if (typeof(App.user.username) == "undefined") {
+		$location.path("/");
+	}
+}
+
+
+
 // util methods.
 function longDateString(workout){
 	if (typeof workout.date == "undefined") {
 		return "";
 	} else{
 		return new Date(workout.date).toString("yyyy/M/d HH:mm");
-	}
-}
-
-function checkLoggedIn($location){
-	if (typeof(App.user.username) == "undefined") {
-		$location.path("/");
 	}
 }

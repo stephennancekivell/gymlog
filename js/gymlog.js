@@ -25,7 +25,11 @@ function ListCtrl($scope, $location, WorkoutResource) {
 }
 
 function logDateString(workout){
-	return new Date(workout.date).toString("yyyy/M/d HH:mm");
+	if (typeof workout.date == "undefined") {
+		return "";
+	} else{
+		return new Date(workout.date).toString("yyyy/M/d HH:mm");
+	}
 }
 
 function EditCtrl($scope, $location, $routeParams, WorkoutResource){

@@ -12,13 +12,14 @@ App.user = {
 	//username: "paul"
 }
 
-App.checkLoggedIn = function($location) {
+App.checkLoggedIn = function($location, $cookieStore) {
+	App.user = $cookieStore.get("user");
 	if (typeof(App.user.username) == "undefined") {
+		console.log("not logged in redirecting");
 		$location.path("/");
+
 	}
 }
-
-
 
 // util methods.
 function longDateString(workout){

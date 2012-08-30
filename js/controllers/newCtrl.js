@@ -1,5 +1,5 @@
-function NewCtrl($scope, $location, WorkoutResource, $cookieStore) {
-	App.checkLoggedIn($location, $cookieStore);
+function NewCtrl($scope, $location, WorkoutResource, UserStore) {
+	App.checkLoggedIn($location,UserStore);
 	$scope.dateString = longDateString;
 	$scope.workout = new WorkoutResource({
 		user:App.user.username,

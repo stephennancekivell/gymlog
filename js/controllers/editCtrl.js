@@ -1,4 +1,5 @@
-function EditCtrl($scope, $location, $routeParams, WorkoutResource){
+function EditCtrl($scope, $location, $routeParams, WorkoutResource, UserStore){
+	App.checkLoggedIn($location, UserStore);
 	$scope.workout = WorkoutResource.get({id:$routeParams.workoutId});
 	$scope.dateString = longDateString;
 

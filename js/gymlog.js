@@ -1,4 +1,4 @@
-var App = angular.module('gymlog', ['mongolab','ngCookies']).
+var App = angular.module('gymlog', ['mongolab']).
 config(function($routeProvider) {
 	$routeProvider.
 		when('/list', {controller:ListCtrl, templateUrl:'partials/list.html'}).
@@ -8,16 +8,10 @@ config(function($routeProvider) {
 		otherwise({redirectTo:'/'});
 });
 
-App.user = {
-	//username: "paul"
-}
-
-App.checkLoggedIn = function($location, $cookieStore) {
-	App.user = $cookieStore.get("user");
+App.checkLoggedIn =  function($location, UserStore) {
+	App.user = UserStore.get();
 	if (typeof(App.user.username) == "undefined") {
-		console.log("not logged in redirecting");
 		$location.path("/");
-
 	}
 }
 

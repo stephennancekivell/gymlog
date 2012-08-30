@@ -1,6 +1,6 @@
-function ListCtrl($scope, $location, WorkoutResource, $http, $cookieStore) {
-	App.checkLoggedIn($location, $cookieStore);
-	$scope.workouts = WorkoutResource.find({q:'{"user":"'+App.user.username+'","deleted":false}'});
+function ListCtrl($scope, $location, WorkoutResource, $http, UserStore) {
+	App.checkLoggedIn($location, UserStore);
+	$scope.workouts = WorkoutResource.find({q:'{"user":"'+UserStore.get().username+'","deleted":false}'});
 	$(".addEntry").css('display','inline-block');
 
 	$scope.dateString = function(workout) {

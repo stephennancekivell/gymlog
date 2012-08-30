@@ -1,9 +1,8 @@
-function WelcomeCtrl($scope, $location, $cookieStore) {
-	App.user = $cookieStore.get("user");
-	$scope.user = App.user;
+function WelcomeCtrl($scope, $location, UserStore) {
+	$scope.user = UserStore.get();
 
 	$scope.$watch('user.username', function() {
-		$cookieStore.put("user", $scope.user);
+		UserStore.put($scope.user);
 	});
 
 	$scope.submit = function() {

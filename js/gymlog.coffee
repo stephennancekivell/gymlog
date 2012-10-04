@@ -3,7 +3,7 @@ config(($routeProvider) ->
 	$routeProvider.
 		when('/list', {controller:'ListCtrl', templateUrl:'partials/list.html'}).
 		when('/new', {controller:'NewCtrl', templateUrl:'partials/edit.html'}).
-		when('/edit/:workoutId', {controller:'EditCtrl', templateUrl:'partials/edit.html'}).
+		when('/edit/:workoutId', {controller:EditCtrl, templateUrl:'partials/edit.html'}).
 		when('/', {controller:'WelcomeCtrl', templateUrl:'partials/welcome.html'}).
 		otherwise({redirectTo:'/'})
 )

@@ -1,4 +1,4 @@
-angular.module('gymlog').controller 'EditCtrl', ($scope, $location, $routeParams, WorkoutResource, UserStore) ->
+@EditCtrl = ($scope, $location, $routeParams, WorkoutResource, UserStore) ->
 	App.checkLoggedIn($location, UserStore)
 	$scope.workout = WorkoutResource.get({id:$routeParams.workoutId})
 	$scope.dateString = longDateString
